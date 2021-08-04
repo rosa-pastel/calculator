@@ -1,0 +1,87 @@
+body{
+    background-color:skyblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    justify-content: center;
+}
+h1{
+    font-family: monospace;
+    font-size: 75px;
+}
+div{
+    display: flex;
+}
+#calculator{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#display{
+    background-color: snow;
+    border-radius: 12px;
+    width: 630px;
+    height: 50px;
+    justify-content: flex-end;
+    padding-right: 25px;
+    align-items: center;
+    font-size: 28px;
+    margin: 15px;
+    font-family:monospace;
+}
+button{
+    border-style: solid;
+    border-color: skyblue;
+    border-radius: 5px;
+    font-size: 35px;
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    background-color: black;
+    color: snow;
+    width: 80px;
+    height: 80px;
+    justify-content: center;
+    align-content: center;
+}
+#clearbutton{
+    width:250px;
+}
+#buttonbox1{
+    width: 240px;
+    margin: 5px;
+    margin-left: 0;
+    flex-wrap: wrap;
+}
+#buttonbox2{
+    width: 240px;
+    margin: 5px;
+    flex-wrap: wrap;
+}
+#buttonbox3{
+    width: 160px;
+    margin: 5px;
+    margin-left: 0;
+    flex-wrap: wrap;
+}
+#buttonbox3>button{
+    width:80px;
+}
+#buttonadd{
+    height: 160px;
+}
+#buttonsubtract{
+    height: 160px;
+}
+#buttonequals{
+    
+}
+#button0{
+    width: 160px;
+}
+button:hover{
+    background-color: snow;
+    color: black;
+}
