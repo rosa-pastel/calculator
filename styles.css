@@ -68,15 +68,25 @@ button{
 }
 #buttonbox3>button{
     width:80px;
+    color:hotpink;
+}
+#buttondot{
+    color:hotpink;
+}
+#buttonbox3>button:hover{
+    width:80px;
+    color:black;
+    background-color: hotpink;
+}
+#buttondot:hover{
+    color:black;
+    background-color: hotpink;
 }
 #buttonadd{
     height: 160px;
 }
 #buttonsubtract{
     height: 160px;
-}
-#buttonequals{
-    
 }
 #button0{
     width: 160px;
