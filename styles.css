@@ -1,5 +1,5 @@
 body{
-    background-color:skyblue;
+    background-color: skyblue;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,7 +8,12 @@ body{
 }
 h1{
     font-family: monospace;
-    font-size: 75px;
+    font-size: 40px;
+    color: snow;
+    padding: 15px;
+    margin-bottom: 100px;
+    border-color: snow;
+    border-style: solid;
 }
 div{
     display: flex;
@@ -17,6 +22,8 @@ div{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: rgb(228, 225, 225);
+    margin-bottom: 100px;
 }
 #display{
     background-color: snow;
@@ -33,14 +40,14 @@ div{
 }
 button{
     border-style: solid;
-    border-color: skyblue;
+    border-color: rgb(228, 225, 225);
     border-radius: 5px;
     font-size: 35px;
     padding: 30px;
     display: flex;
     flex-wrap: wrap;
     flex-grow: 1;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.788);
     color: snow;
     width: 80px;
     height: 80px;
@@ -69,19 +76,21 @@ button{
 }
 #buttonbox3>button{
     width:80px;
-    color:hotpink;
+    color: black;
+    background-color: rgb(170, 151, 255);
 }
 #buttondot{
-    color:hotpink;
+    color: black;
+    background-color: rgb(170, 151, 255);
 }
 #buttonbox3>button:hover{
+    background-color: rgb(110, 78, 255);
+    color: black;
     width:80px;
-    color:black;
-    background-color: hotpink;
 }
 #buttondot:hover{
-    color:black;
-    background-color: hotpink;
+    background-color: rgb(110, 78, 255);
+    color: black;
 }
 #buttonadd{
     height: 160px;
