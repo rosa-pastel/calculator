@@ -67,9 +67,11 @@ function decideNextStepByButtonType(){
     }
     else if (typeOfButton== 'equalssign') {
         if(a!='' && operator==''){
-            result=a
+            result= a
         }
-        result= operate(a, b, operator)
+        else{
+            result= operate(a, b, operator)
+        }
         displayScreen.innerText=result
         resetEverythingButResult()
     }
