@@ -36,6 +36,7 @@ function findButtonType(){
     else if (buttonClicked.id == 'buttondot') typeOfButton= 'dot'
     else if (buttonClicked.classList.contains('operator') ) typeOfButton= 'operator'
     else if (buttonClicked.id == 'buttonequals') typeOfButton= 'equalssign'
+    else typeOfButton='clear'
 }
 function decideNextStepByButtonType(){
     valueOfButtonClicked=buttonClicked.innerText
@@ -75,6 +76,9 @@ function decideNextStepByButtonType(){
         displayScreen.innerText=result
         resetEverythingButResult()
     }
+    else if (typeOfButton=='clear'){
+      resetEverything()
+    }
 }
 
 let a=''
@@ -89,9 +93,6 @@ let displayScreen=document.querySelector('#display')
 
 document.addEventListener('click',(event)=>{
         buttonClicked=event.target
-        if (buttonClicked.innerText=='Clear All') resetEverything
-        else{
-        findButtonType()
+        findButtonType(buttonClicked)
         decideNextStepByButtonType()
-        }
 })
