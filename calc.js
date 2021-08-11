@@ -35,7 +35,9 @@ function calculator(){
   let operator=''
   let result=''
   const displayScreen=document.querySelector('#display')
-  document.addEventListener('click',(event)=>{
+  const buttons=document.querySelectorAll('button')
+  for(i=0;i<buttons.length;i++){
+  buttons[i].addEventListener('click',(event)=>{
           let buttonClicked = event.target
           let typeOfButton = findButtonType(buttonClicked) 
           let textOfButtonClicked=buttonClicked.innerText
@@ -62,15 +64,21 @@ function calculator(){
               }
           }
           else if (typeOfButton== 'operator') {
-              if (a.split("").pop()=='.') a+=0
+              if (a. split("").pop()=='.') a+='0'
               if (a=='') {    
                 a=''
                 b=''
-                operator=''
-                result=''
-                displayScreen.innerText=''
+                operator = ''
+                result = ''
+                displayScreen.innerText = ''
               }
               else{
+                if (b!=''){                
+                  result = operate(a, b, operator)
+                  a = result.toString()
+                  b = ''
+                  result = ''
+                }                  
                 operator=textOfButtonClicked
               } 
           }
@@ -86,7 +94,7 @@ function calculator(){
               else if(a!='' && operator!='' && b!=''){
                 if (b.split("").pop()=='.') b+=0
                 result = operate(a, b, operator)
-                a=result
+                a=result.toString()
                 b=''
                 operator=''
                 result=''              }
@@ -96,10 +104,10 @@ function calculator(){
             b=''
             operator=''
             result=''
-            displayScreen.innerText=''
           }       
           displayScreen.innerText=a+operator+b+result     
   })
+}
 }
 
 calculator()
