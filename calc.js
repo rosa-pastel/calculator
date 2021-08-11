@@ -18,81 +18,88 @@ function operate(a,b,operator){
     else if (operator=='*') return multiply(a,b)
     else if(operator=='/') return divide(a,b)
 }
-function resetEverything(){
-    a=''
-    b=''
-    operator=''
-    result=''
-    displayScreen.innerText=''
-}
-function resetEverythingButResult(){
-    a=result
-    b=''
-    operator=''
-    result=''
-}
-function findButtonType(){
+
+function findButtonType(buttonClicked){
+    let typeOfButton
     if (buttonClicked.classList.contains('numberbutton') ) typeOfButton= 'number'
     else if (buttonClicked.id == 'buttondot') typeOfButton= 'dot'
     else if (buttonClicked.classList.contains('operator') ) typeOfButton= 'operator'
     else if (buttonClicked.id == 'buttonequals') typeOfButton= 'equalssign'
     else typeOfButton='clear'
-}
-function decideNextStepByButtonType(){
-    valueOfButtonClicked=buttonClicked.innerText
-    if (typeOfButton== 'number'){
-        displayScreen.innerText+=valueOfButtonClicked
-        if (operator=='') a+=valueOfButtonClicked
-        else b+=valueOfButtonClicked
-    }
-    else if (typeOfButton== 'dot') {
-        valueOfButtonClicked='0.'
-        document.addEventListener('click',(event)=> {
-            buttonClicked=event.target
-            findButtonType()
-            if (typeOfButton=='number'){
-                valueOfButtonClicked=buttonClicked.innerText
-                displayScreen.innerText+=valueOfButtonClicked
-                if (operator=='') a+=valueOfButtonClicked
-                else b+=valueOfButtonClicked
-            }
-            else{
-                resetEverything()
-            }
-        })
-    }
-    else if (typeOfButton== 'operator') {
-        if (a=='') resetEverything()
-        else operator=valueOfButtonClicked
-        displayScreen.innerText+=operator
-    }
-    else if (typeOfButton== 'equalssign') {
-        if(a!='' && operator==''){
-            result= a
-        }
-        else{
-            result= operate(a, b, operator)
-        }
-        displayScreen.innerText=result
-        resetEverythingButResult()
-    }
-    else if (typeOfButton=='clear'){
-      resetEverything()
-    }
+    return typeOfButton
 }
 
-let a=''
-let b=''
-let operator=''
-let result=''
-let buttonClicked
-let valueOfButtonClicked
-let typeOfButton
+function calculator(){
+  let a=''
+  let b=''
+  let operator=''
+  let result=''
+  const displayScreen=document.querySelector('#display')
+  document.addEventListener('click',(event)=>{
+          let buttonClicked = event.target
+          let typeOfButton = findButtonType(buttonClicked) 
+          let textOfButtonClicked=buttonClicked.innerText
+          if (typeOfButton== 'number'){
+                if (operator=='') a+=textOfButtonClicked
+                else b+=textOfButtonClicked
+          }
+          else if (typeOfButton== 'dot') {
+              if (operator==''){
+                if (a==''){
+                  a='0.'
+                }
+                else{
+                  a+='.'
+                }
+              }
+              else{
+                if (b==''){
+                  b='0.'
+                }
+                else{
+                  b+='.'
+                }
+              }
+          }
+          else if (typeOfButton== 'operator') {
+              if (a.split("").pop()=='.') a+=0
+              if (a=='') {    
+                a=''
+                b=''
+                operator=''
+                result=''
+                displayScreen.innerText=''
+              }
+              else{
+                operator=textOfButtonClicked
+              } 
+          }
+          else if (typeOfButton== 'equalssign') {
+              if(a!='' && operator==''){
+                if (a.split("").pop()=='.') a+=0
+                result = a
+                a=result
+                b=''
+                operator=''
+                result=''
+              }
+              else if(a!='' && operator!='' && b!=''){
+                if (b.split("").pop()=='.') b+=0
+                result = operate(a, b, operator)
+                a=result
+                b=''
+                operator=''
+                result=''              }
+          }
+          else if (typeOfButton=='clear'){
+            a=''
+            b=''
+            operator=''
+            result=''
+            displayScreen.innerText=''
+          }       
+          displayScreen.innerText=a+operator+b+result     
+  })
+}
 
-let displayScreen=document.querySelector('#display')
-
-document.addEventListener('click',(event)=>{
-        buttonClicked=event.target
-        findButtonType(buttonClicked)
-        decideNextStepByButtonType()
-})
+calculator()
