@@ -28,6 +28,7 @@ function findButtonType(buttonClicked){
     else if (buttonClicked.id == 'buttondot') typeOfButton= 'dot'
     else if (buttonClicked.classList.contains('operator') ) typeOfButton= 'operator'
     else if (buttonClicked.id == 'buttonequals') typeOfButton= 'equalssign'
+    else if (buttonClicked.id == 'backspace') typeOfButton= 'backspace'
     else typeOfButton='clear'
     return typeOfButton
 }
@@ -108,6 +109,17 @@ function calculator(){
             operator=''
             result=''
           }       
+          else if (typeOfButton=='backspace'){
+            if (b!=''){
+              b=b.slice(0,-1)
+            }
+            else if (operator!=''){
+              operator=''
+            }
+            else if (a!=''){
+              a=a.slice(0,-1)
+            }
+          }
           displayScreen.innerText=a+operator+b+result
   })
 }
