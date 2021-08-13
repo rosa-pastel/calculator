@@ -13,12 +13,12 @@ function divide(a,b){
 function operate(a,b,operator){
     a= Number(a)
     b= Number(b)
-    if (operator=='+') return add(a,b)
-    else if (operator=='-') return subtract(a,b)
-    else if (operator=='*') return multiply(a,b)
+    if (operator=='+') return +add(a,b).toFixed(12)
+    else if (operator=='-') return +subtract(a,b).toFixed(12)
+    else if (operator=='*') return +multiply(a,b).toFixed(12)
     else if(operator=='/'){
       if (b==0) return 'YOU SHALL NOT PASS \nno kidding, you may pass but you shall not divide by zero'
-      else return divide(a,b)
+      else return +divide(a,b).toFixed(12)
     }
 }
 
@@ -88,7 +88,7 @@ function calculator(){
           else if (typeOfButton== 'equalssign') {
               if(a!='' && b==''){
                 if (a.split("").pop()=='.') a+=0
-                result = a
+                result = +a.toFixed(12)
                 a=result
                 b=''
                 operator=''
