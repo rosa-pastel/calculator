@@ -69,12 +69,17 @@ function calculator(){
           }
           else if (typeOfButton== 'operator') {
               if (a.split("").pop()=='.') a+='0'
-              if (a=='') {    
+              if (a=='') {
+                if (textOfButtonClicked=='-'){
+                  a='-'
+                } 
+                else{   
                 a=''
                 b=''
                 operator = ''
                 result = ''
                 displayScreen.innerText = ''
+                }
               }
               else{
                 if (b!=''){                
