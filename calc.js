@@ -38,6 +38,7 @@ function calculator(){
   let b=''
   let operator=''
   let result=''
+  let errorMessage=''
   const displayScreen=document.querySelector('#display')
   const buttons=document.querySelectorAll('button')
   for(i=0;i<buttons.length;i++){
@@ -46,10 +47,12 @@ function calculator(){
           let typeOfButton = findButtonType(buttonClicked) 
           let textOfButtonClicked=buttonClicked.innerText
           if (typeOfButton== 'number'){
+            errorMessage=''
                 if (operator=='') a+=textOfButtonClicked
                 else b+=textOfButtonClicked
           }
           else if (typeOfButton== 'dot') {
+            errorMessage=''
               if (operator==''){
                 if (a==''){
                   a='0.'
@@ -68,6 +71,7 @@ function calculator(){
               }
           }
           else if (typeOfButton== 'operator') {
+            errorMessage=''
               if (a.split("").pop()=='.') a+='0'
               if (a=='') {
                 if (textOfButtonClicked=='-'){
@@ -103,19 +107,30 @@ function calculator(){
               else if(a!='' && operator!='' && b!=''){
                 if (b.split("").pop()=='.') b+=0
                 result = operate(a, b, operator)
-                a=result.toString()
+                if (result=='YOU SHALL NOT PASS \nno kidding, you may pass but you shall not divide by zero'){
+                  a=''
+                  errorMessage='YOU SHALL NOT PASS \nno kidding, you may pass but you shall not divide by zero'
+                }
+                else{ 
+                  a = result.toString()
+                }
                 b=''
                 operator=''
-                result=''              }
+                result=''
+              }
           }
           else if (typeOfButton=='clear'){
             a=''
             b=''
             operator=''
             result=''
+            errorMessage=''
           }       
           else if (typeOfButton=='backspace'){
-            if (b!=''){
+            if (errorMessage!=''){
+              errorMessage=''
+            }
+            else if (b!=''){
               b=b.slice(0,-1)
             }
             else if (operator!=''){
@@ -125,7 +140,7 @@ function calculator(){
               a=a.slice(0,-1)
             }
           }
-          displayScreen.innerText=a+operator+b+result
+          displayScreen.innerText=a+operator+b+result+errorMessage
   })
 }
 }
